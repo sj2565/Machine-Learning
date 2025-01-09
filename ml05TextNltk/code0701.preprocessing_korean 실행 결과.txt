@@ -1,0 +1,73 @@
+C:\Anaconda3\python.exe G:/AiProject/ml04TextNltk/code07.preprocessing_korean.py
+파일 크기 : 
+ratings.txt                   19.52MB
+ratings_test.txt              4.89MB
+ratings_train.txt             14.63MB
+ratings_train_old.txt         14.63MB
+학습용 데이터 일부
+         id                                           document  label
+0   9976970                                아 더빙.. 진짜 짜증나네요 목소리      0
+1   3819312                  흠...포스터보고 초딩영화줄....오버연기조차 가볍지 않구나      1
+2  10265843                                  너무재밓었다그래서보는것을추천한다      0
+3   9045019                      교도소 이야기구먼 ..솔직히 재미는 없다..평점 조정      0
+4   6483659  사이몬페그의 익살스런 연기가 돋보였던 영화!스파이더맨에서 늙어보이기만 했던 커스틴 ...      1
+전체 학습 데이터의 개수: 149999
+행별 문자열의 길이
+0    19
+1    33
+2    17
+3    29
+4    61
+Name: document, dtype: int64
+korean-preprocessing-01.png 파일 저장됨
+리뷰 길이 최대 값: 158
+리뷰 길이 최소 값: 1
+리뷰 길이 평균 값: 35.24
+리뷰 길이 표준 편차: 29.58
+리뷰 길이 중간 값: 27.0
+리뷰 길이 제 1 사분위: 16.0
+리뷰 길이 제 3 사분위: 42.0
+korean-preprocessing-02.png 파일 저장됨
+앞 5개의 행 보기
+['아 더빙.. 진짜 짜증나네요 목소리', '흠...포스터보고 초딩영화줄....오버연기조차 가볍지 않구나', '너무재밓었다그래서보는것을추천한다', '교도소 이야기구먼 ..솔직히 재미는 없다..평점 조정', '사이몬페그의 익살스런 연기가 돋보였던 영화!스파이더맨에서 늙어보이기만 했던 커스틴 던스트가 너무나도 이뻐보였다']
+korean-preprocessing-03.png 파일 저장됨
+긍정과 부정에 대한 빈도를 시각화
+C:\Anaconda3\lib\site-packages\seaborn\_decorators.py:36: FutureWarning: Pass the following variable as a keyword arg: x. From version 0.12, the only valid positional argument will be `data`, and passing other arguments without an explicit keyword will result in an error or misinterpretation.
+  warnings.warn(
+korean-preprocessing-04.png 파일 저장됨
+긍정 리뷰 개수: 74827
+부정 리뷰 개수: 75172
+행별 단어의 갯수
+앞 5개의 단어 개수 파악하기
+0     5
+1     4
+2     1
+3     6
+4    11
+Name: document, dtype: int64
+korean-preprocessing-05.png 파일 저장됨
+리뷰 단어 개수 최대 값: 41
+리뷰 단어 개수 최소 값: 1
+리뷰 단어 개수 평균 값: 7.58
+리뷰 단어 개수 표준 편차: 6.51
+리뷰 단어 개수 중간 값: 6.0
+리뷰 단어 개수 제 1 사분위: 3.0
+리뷰 단어 개수 제 3 사분위: 9.0
+물음표가 있는 리뷰 : 8.25%
+마침표가 있는 리뷰 : 51.76%
+
+앞 5개 정규식으로 전처리하기
+train_data['document'][0]
+아 더빙.. 진짜 짜증나네요 목소리
+training data 전처리 작업이 진행중입니다. 잠시만 기다려 주세요.
+
+
+
+training data 전처리 작업이 진행중입니다. 잠시만 기다려 주세요.
+training data 전처리 작업이 완료 되었습니다.
+testing data 전처리 작업이 진행중입니다. 잠시만 기다려 주세요.
+testing data 전처리 작업이 완료 되었습니다.
+finished
+
+
+
