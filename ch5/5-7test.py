@@ -1,0 +1,76 @@
+import numpy as np
+import tensorflow as tf
+#from tensorflow.keras.datasets import mnist
+import sys, os
+sys.path.append(os.pardir)  # 부모 디렉터리의 파일을 가져올 수 있도록 설정
+import numpy as np
+from dataset.mnist import load_mnist
+from PIL import Image
+
+
+def img_show(img):
+    pil_img = Image.fromarray(np.uint8(img))
+    pil_img.show()
+
+
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+
+# MNIST 읽어 와서 신경망에 입력할 형태로 변환
+#(x_train, y_train), (x_test, y_test) = mnist.load_data()
+(x_train, y_train), (x_test, y_test) = load_mnist()
+img = x_train[0]*1000
+label = y_train[0]
+print(label)  # 5
+print(img.shape)  # (784,)
+img = img.reshape(28, 28)  # 형상을 원래 이미지의 크기로 변형
+print(img.shape)  # (28, 28)
+img_show(img)
+
+
+x_train=x_train.astype(np.float32)/255.0 # ndarray로 변환
+x_test=x_test.astype(np.float32)/255.0
+
+y_train=tf.keras.utils.to_categorical(y_train,10) # 원핫 코드로 변환
+y_test=tf.keras.utils.to_categorical(y_test,10)
+print("train: ", x_train.shape,y_train.shape)
+print("test: ", x_test.shape, y_test.shape)
+
+
+n_input=784
+n_hidden=1024
+n_output=10
+
+mlp=Sequential()
+mlp.add (Dense(units=n_hidden,activation='tanh',input_shape=(n_input,),kernel_initializer='random_uniform',bias_initializer='zeros'))
+mlp.add(Dense(units=n_output,activation='tanh',kernel_initializer='random_uniform',bias_initializer='zeros'))
+
+mlp.compile(loss='mean_squared_error',optimizer=Adam(learning_rate=0.0001),metrics=['accuracy'])
+hist=mlp.fit(x_train,y_train,batch_size=128,epochs=300,validation_data=(x_test,y_test),verbose=2)
+
+res=mlp.evaluate(x_test,y_test,verbose=0)
+print("정확률은",res[1]*100)
+
+import matplotlib.pyplot as plt
+
+# 정확률 곡선
+plt.plot(hist.history['accuracy'])
+plt.plot(hist.history['val_accuracy'])
+plt.title('Model accuracy')
+plt.ylabel('Accuracy')
+plt.xlabel('Epoch')
+plt.legend(['Train','Validation'], loc='upper left')
+plt.grid()
+plt.show()
+
+# 손실 함수 곡선
+plt.plot(hist.history['loss'])
+plt.plot(hist.history['val_loss'])
+plt.title('Model loss')
+plt.ylabel('Loss')
+plt.xlabel('Epoch')
+plt.legend(['Train','Validation'], loc='upper right')
+plt.grid()
+plt.show()
+
